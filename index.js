@@ -28,7 +28,7 @@ const questions = [
         type: 'input',
         message: 'Enter a color that you would like your shape to be.',
         name: 'shapeColor',
-    },  
+    } 
 ];
 
 function writeToFile(fileName, data) {
@@ -37,7 +37,17 @@ function writeToFile(fileName, data) {
         if (err) {
             return console.error(err);
         } else {
-            console.log(`Success Logo generated!`);
+            console.log(`Success! Logo generated and saved to ${fileName}.`);
         }
+    });
+};
+
+function init() {
+    inquirer.prompt(questions)
+    .then(function(data) {
+        writeToFile('logo.svg', logoGenerator(data))
+        console.log('success')
     })
 };
+
+init();
