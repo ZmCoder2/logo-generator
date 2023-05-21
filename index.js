@@ -6,7 +6,7 @@ const questions = [
     {
         type: 'input',
         message: 'Enter three characters you would like to use for your logo.',
-        name: 'characters'
+        name: 'text'
     },
     {
         type: 'list',
@@ -33,20 +33,20 @@ const questions = [
 
 function writeToFile(fileName, data) {
     const logo = logoGenerator(data);
-    fs.writeFile(fileName, data, err => {
-        if (err) {
+    fs.writeFile(fileName, logo, function (error) {
+        if (error) {
             return console.error(err);
         } else {
-            console.log(`Success! Logo generated and saved to ${fileName}.`);
+            console.log(`Success, logo generated!`);
         }
     });
 };
 
 function init() {
     inquirer.prompt(questions)
-    .then(function(data) {
-        writeToFile('logo.svg', logoGenerator(data))
-        console.log('success')
+    .then(function (data) {
+        var fileName = 'logo.svg';
+        writeToFile(fileName, data);
     })
 };
 
