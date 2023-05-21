@@ -1,7 +1,9 @@
+// npm packages installed
 const inquirer = require('inquirer');
 const fs = require('fs');
 const logoGenerator = require('./utils/logoGenerator');
 
+// Questions for the user to answer
 const questions = [
     {
         type: 'input',
@@ -31,6 +33,7 @@ const questions = [
     } 
 ];
 
+// Function that will generate the logo to the svg file
 function writeToFile(fileName, data) {
     const logo = logoGenerator(data);
     fs.writeFile(fileName, logo, function (error) {
